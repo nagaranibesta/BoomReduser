@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web</title>
+    
+    
+
+</head>
+<body>
+    <div class="timer-container">
+        <input type="text" class="user-input" id="defuser" />
+        <br />
+        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-dynamic-webapps/time-bomb-img.png" class="bomb-image"/>
+        <p class="timer-display" id="timer">10</p>
+      </div>
+   
+   <script>
+    let timerEle = document.getElementById("timer")
+    let defuserEl = document.getElementById("defuser")
+    let countDown = 10
+
+    let intervalId = setInterval(function(){
+        countDown = countDown - 1
+        console.log(countDown)
+        timerEle.textContent = countDown
+        if (countDown === 0){
+            timerEle.textContent = "BOOM!!"
+            clearInterval(intervalId)
+        }
+    },1000)
+    
+    defuserEl.addEventListener("keydown",  function keyDown(event){
+        let BoomDefuser = defuserEl.value
+        if (countDown !== 0 && BoomDefuser === "defuser" && event.key === "Enter") {
+               timerEle.textContent = "You did it!"
+               clearInterval(intervalId)
+        }
+  
+    })
+   
+   
+
+   </script>
+   <style>
+    .timer-container {
+        text-align: center;
+        background-color: #00bafc;
+        height: 100vh;
+        padding: 20px;
+      }
+      
+      .timer-display {
+        color: white;
+        font-size: 50px;
+      }
+      
+      .user-input {
+        text-align: center;
+        border-width: 0px;
+        border-radius: 4px;
+        padding: 6px;
+      }
+      
+      .bomb-image {
+        width: 150px;
+        margin-top: 40px;
+      }
+   </style>
+</body>
+</html>
